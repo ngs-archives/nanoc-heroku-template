@@ -6,12 +6,21 @@ use Rack::Static,
   :root => "public"
 
 run lambda { |env|
+  path = env["PATH_INFO"]
+  path = "#{path}/" unless path.end_with?('/')
+  begin
+    content = File.open("public#{path}index.html", File::RDONLY)
+    status = 200
+  rescue
+    content = File.open("public/404/index.html", File::RDONLY)
+    status = 404
+  end
   [
-    200, 
+    status, 
     {
       'Content-Type'  => 'text/html', 
       'Cache-Control' => 'public, max-age=86400' 
     },
-    File.open('public/index.html', File::RDONLY)
+    content
   ]
 }
