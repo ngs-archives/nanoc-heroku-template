@@ -2,11 +2,15 @@
 %html{:lang =>"en"}
   %head
     %meta{:charset =>"utf-8"}
-    %meta{:name =>"generator", :content =>"nanoc 3.1.7"}
     %title
-      = "Your Brand New - #{@item[:title]}"
-    %link{:rel =>"stylesheet", :type =>"text/css", :href =>"/stylesheets/screen.css",
-    :media =>"screen"}
+      = "#{@site.config[:title]} - #{@item[:title]}"
+    %meta{:name =>"generator", :content => "nanoc 3.1.7"}
+    - if @item[:description]
+      %meta{:name =>"description", :content => @item[:description]}
+    - if @item[:keywords]
+      %meta{:name =>"keywords", :content => @item[:keywords] }
+    %link{:rel =>"stylesheet", :type =>"text/css", :href =>"/stylesheets/screen.css", :media =>"screen"}
+    %script{:type => "text/javascript", :src => "/javascripts/app.js"}
   %body
     #main
       = yield
@@ -25,3 +29,6 @@
           %a{:title => "IRC Channel", :href => "irc://chat.freenode.net/#nanoc"}IRC Channel
         %li
           %a{:title => "Wiki", :href => "http://projects.stoneship.org/trac/nanoc/"}Wiki
+
+    - if @site.config[:google_analytics_id]
+      = google_analytics(@site.config[:google_analytics_id])
