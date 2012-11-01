@@ -13,6 +13,7 @@ group :development do
   gem 'mime-types'
   gem 'nanoc'
   gem 'rake'
+  gem 'rspec'
   gem 'sass'
   gem 'uglifier'
 end

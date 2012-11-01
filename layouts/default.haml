@@ -1,9 +1,18 @@
 !!! 5
+-
+- @og = (@site.config[:og]||{}).dup.merge(@item[:og]||{})
+- @og[:locale]       = 'en_US'
+- @og[:site_name]    = @site.config[:title]
+- @og[:title]        ||=  @item[:title] || @site.config[:title]
+- @og[:description]  ||= @site.config[:description]
+- @og[:updated_time] ||= Time.now.nsec
+-
 %html{:lang =>"en"}
   %head
     %meta{:charset =>"utf-8"}
     %title
       = "#{@site.config[:title]} - #{@item[:title]}"
+    = og_tag(@og)
     %meta{:name =>"generator", :content => "nanoc 3.1.7"}
     - if @item[:description]
       %meta{:name =>"description", :content => @item[:description]}

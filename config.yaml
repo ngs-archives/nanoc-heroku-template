@@ -1,5 +1,17 @@
-# Title of site
+# Site meta information
 title: 'Your Brand New'
+description: 'You’ve just created a new nanoc site. The page you are looking at right now is the home page for your site.'
+
+# OpenGraph meta information
+og:
+  image:
+    '': 'http://example.com/ogp.jpg'
+    secure_url: 'https://example.com/ogp.jpg'
+    width: 1024
+    height: 1024
+    type: 'image/jpeg'
+  url: 'http://mysite.com/'
+  type: software
 
 # Google Analytic ID
 # google_analytics_id: 'UA-XXXXXXXX-Y'
